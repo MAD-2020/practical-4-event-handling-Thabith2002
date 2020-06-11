@@ -1,1 +1,2 @@
 include ':app'
+rootProject.name = "Whack_A_Mole_2.0"
