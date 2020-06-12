@@ -23,9 +23,8 @@ public class MainActivity extends AppCompatActivity {
     int score = 0;
     DecimalFormat df = new DecimalFormat("#");
     String points = df.format(score);
-    Button button1;
-    Button button2;
-    Button button3;
+    Button buttons[] = new Button[3];
+
 
     public int counter;
 
@@ -36,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Log.v(TAG, "Finished Pre-Initialisation!");
         resultTextView = findViewById(R.id.resultView);
-        button1 = findViewById(R.id.btn1);
-        button2 = findViewById(R.id.btn2);
-        button3 = findViewById(R.id.btn3);
+        buttons[0] = findViewById(R.id.btn1);
+        buttons[1] = findViewById(R.id.btn2);
+        buttons[2] = findViewById(R.id.btn3);
 
 
         Log.v(TAG, "Starting GUI!");
@@ -85,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (v.getId()) {
                     case R.id.btn1:
                         Log.v(TAG, "Button Left Clicked!");
-                        if (button1.getText() == "*") {
+                        if (buttons[0].getText() == "*") {
                             score += 1;
                             if(score > 0 && score % 10 == 0){
                                 nextLevel.create().show();
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.btn2:
                         Log.v(TAG, "Button Middle Clicked!");
 
-                        if (button2.getText() == "*") {
+                        if (buttons[1].getText() == "*") {
                             score += 1;
                             if(score > 0 && score % 10 == 0){
                                 nextLevel.create().show();
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.btn3:
                         Log.v(TAG, "Button Right Clicked!");
 
-                        if (button3.getText() == "*") {
+                        if (buttons[2].getText() == "*") {
                             score += 1;
                             if(score > 0 && score % 10 == 0){
                                 nextLevel.create().show();
@@ -158,33 +157,21 @@ public class MainActivity extends AppCompatActivity {
 
         };
 
-        button1.setOnClickListener(onclick);
-        button2.setOnClickListener(onclick);
-        button3.setOnClickListener(onclick);
+        buttons[0].setOnClickListener(onclick);
+        buttons[1].setOnClickListener(onclick);
+        buttons[2].setOnClickListener(onclick);
     }
 
 
+    public void setNewMole() {
+        buttons[0].setText("O");
+        buttons[1].setText("O");
+        buttons[2].setText("O");
 
-
-    public void setNewMole()
-    {
         Random ran = new Random();
-        int randomLocation = ran.nextInt(3);
-
-        if(randomLocation == 0){
-            button1.setText("*");
-            button2.setText("O");
-            button3.setText("O");
-        }
-        else if(randomLocation == 1){
-            button2.setText("*");
-            button1.setText("O");
-            button3.setText("O");
-        }
-        else if(randomLocation == 2){
-            button3.setText("*");
-            button2.setText("O");
-            button1.setText("O");
-        }
+        int r = ran.nextInt(3);
+        buttons[r].setText("*");
     }
+
 }
+
